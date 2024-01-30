@@ -1,0 +1,13 @@
+body {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.frame {
+  text-align: center;
+  padding: 150px;
+  border: white dotted 10px;
+}
