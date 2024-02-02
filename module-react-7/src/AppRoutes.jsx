@@ -9,6 +9,7 @@ import {
 } from "./pages/DashboardPage";
 import AboutPage from "./pages/AboutPage";
 import PageNotFound from "./pages/PageNotFound";
+import LoginForm from "./LoginForm.jsx"
 
 // special component containing all the possible routes for this app
 // any props passed into AppRoutes will also be passed onto
@@ -25,7 +26,7 @@ function AppRoutes(props) {
         <Route path="bitcoin" element={<BitcoinRates />} />
         <Route path="emoji" element={<EmojiChanger />} />
       </Route>
-      <Route path="/about" element={<AboutPage {...props} />} />
+      <Route path="/about" element={<LoginForm {...props} />} />
       {/* special route to handle if none of the above match */}
       <Route path="*" element={<PageNotFound />} />
     </Routes>

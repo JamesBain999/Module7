@@ -7,27 +7,38 @@ body {
 }
 
 .frame {
+  border-radius: 15px;
+  background-color: grey;
   text-align: center;
-  padding: 150px;
-  border: white dotted 10px;
+  padding: 10px;
+}
+
+.NavBar {
+  border-radius: 15px;
+  
 }
 
 .NavBar ul {
   display: flex;
   list-style: none;
-  justify-content: center;
+  justify-content: space-between; 
   padding: 0;
 }
 
 .NavBar ul li a {
-  padding: 1em;
+  padding: 2em;
   color: inherit;
-  text-transform:
-    uppercase;
+  text-transform: uppercase;
   display: inline-block;
   text-decoration: none;
 }
 
 .NavBar ul li a.active {
   font-weight: bold;
+}
+
+.DashboardPage button {
+  margin: 10px;
+  background-color: brown;
+  color: black;
 }

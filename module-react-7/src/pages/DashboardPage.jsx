@@ -2,6 +2,7 @@ import { useNavigate, Outlet } from "react-router-dom";
 import React from "react";
 import { useChangeMood } from "../ChangeMoodContext";
 import useBitcoinRates from "../useBitcoinRates";
+import { useUserContext } from '../UserContext'
 
 
 export default function DashboardPage() {
