@@ -1,11 +1,16 @@
 import React, { useRef } from "react";
+import { useUserContext } from "./UserContext";
 
 const SimpleForm = () => {
+
+  const { currentUser } = useUserContext();
+
   const usernameRef = useRef(null);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const username = usernameRef.current.value;
+    console.log("enter")
     alert(`Username submitted: ${username}`);
   };
 
@@ -17,7 +22,7 @@ const SimpleForm = () => {
     <form onSubmit={handleSubmit}>
       <label>
         Username:
-        <input type="text" ref={usernameRef} />
+        <input type="text" ref={usernameRef} placeholder={currentUser.email}/>
       </label>
       <br />
       <button type="submit">Submit</button>

@@ -1,34 +1,27 @@
-import { useState, useEffect } from "react";
+import React from "react";
+import { useChangeMood } from "./ChangeMoodContext";
+import useBitcoinRates from "./useBitcoinRates";
 
-const currencies = ["USD", "AUD", "NZD", "GBP", "EUR", "SGD"];
 function BitcoinRates() {
-  const [currency, setCurrency] = useState(currencies[0]);
-  const [exchangeRate, setExchangeRate] = useState("");
+  const currencies = ["USD", "AUD", "NZD", "GBP", "EUR", "SGD"];
+  const { currentMood } = useChangeMood(); // Retrieve the currentMood from the context
 
-  useEffect(() => {
-    console.log("fetching data");
-    let ignore = false;
-    fetch(`https://blockchain.info/ticker`)
-      .then((response) => response.json())
-      .then((json) => {
-        let priceData = json[currency];
-        if (!ignore) setExchangeRate(priceData.last);
-      });
-
-    return () => {
-      ignore = true;
-      console.log("cleanup effect");
-    };
-  }, [currency]);
+  const [currency, setCurrency] = React.useState(currencies[0]);
+  const price = useBitcoinRates(currency);
 
   const options = currencies.map((curr) => (
     <option value={curr} key={curr}>
       {curr}
     </option>
   ));
+
   return (
     <div className="BitcoinRates componentBox">
       <h3>Bitcoin Exchange Rate</h3>
+      <div>
+        <strong>Current Mood: </strong>
+        {currentMood}
+      </div>
       <label>
         Choose currency:
         <select value={currency} onChange={(e) => setCurrency(e.target.value)}>
@@ -37,7 +30,7 @@ function BitcoinRates() {
       </label>
       <div>
         <strong>Exchange Rate: </strong>
-        {exchangeRate}
+        {price}
       </div>
     </div>
   );
