@@ -18,33 +18,39 @@ import AppRoutes from "./AppRoutes";
 import NavBar from "./NavBar";
 import { ChangeMoodProvider } from "./ChangeMoodContext";
 import EmojiChanger from "./Emoji";
+import { ThemeProvider } from "@mui/material/styles";
+import { tealTheme } from "./Theme";
+import { greenTheme } from "./Theme2";
+
 
 function App() {
   return (
     <>
       <div className="frame">
-        <UserProvider>
-          <NavBar />
-          <ChangeMoodProvider>
-            <AppRoutes />
-            {/* <EmojiChanger />
+        <ThemeProvider theme={greenTheme}>
+          <UserProvider>
+            <NavBar />
+            <ChangeMoodProvider>
+              <AppRoutes />
+              {/* <EmojiChanger />
             <BitcoinRates /> */}
-            {/* <LoginForm /> */}
-            {/* <DynamicStyleComponent /> */}
-            {/* <DynamicStyleComponentV2 /> */}
-            {/* <PostListReducer /> */}
-            {/* <SynchronizedInputFields />         */}
-            {/* <TodoList /> */}
-            {/* <SimpleForm /> */}
-            {/* <TimerControlledCounter /> */}
-            {/* <StatefulCounter /> */}
-            {/* <VideoPlayer /> */}
-            {/* <RefCounter /> */}
-            {/* <ActivityFinder /> */}
-            {/* <Clock /> */}
-            {/* <ClockDisplay /> */}
-          </ChangeMoodProvider>
-        </UserProvider>
+              {/* <LoginForm /> */}
+              {/* <DynamicStyleComponent /> */}
+              {/* <DynamicStyleComponentV2 /> */}
+              {/* <PostListReducer /> */}
+              {/* <SynchronizedInputFields />         */}
+              {/* <TodoList /> */}
+              {/* <SimpleForm /> */}
+              {/* <TimerControlledCounter /> */}
+              {/* <StatefulCounter /> */}
+              {/* <VideoPlayer /> */}
+              {/* <RefCounter /> */}
+              {/* <ActivityFinder /> */}
+              {/* <Clock /> */}
+              {/* <ClockDisplay /> */}
+            </ChangeMoodProvider>
+          </UserProvider>
+        </ThemeProvider>
       </div>
     </>
   );

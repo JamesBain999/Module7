@@ -5,11 +5,12 @@ import {
   DashboardMessages,
   DashboardTasks,
   BitcoinRates,
-  EmojiChanger
+  EmojiChanger,
 } from "./pages/DashboardPage";
 import AboutPage from "./pages/AboutPage";
 import PageNotFound from "./pages/PageNotFound";
-import LoginForm from "./LoginForm.jsx"
+import LoginForm from "./LoginForm.jsx";
+import PostListReducer from "./PostListReducer.jsx";
 
 // special component containing all the possible routes for this app
 // any props passed into AppRoutes will also be passed onto
@@ -25,6 +26,7 @@ function AppRoutes(props) {
         <Route path="tasks" element={<DashboardTasks />} />
         <Route path="bitcoin" element={<BitcoinRates />} />
         <Route path="emoji" element={<EmojiChanger />} />
+        <Route path="PLR" element={<PostListReducer />} />
       </Route>
       <Route path="/about" element={<LoginForm {...props} />} />
       {/* special route to handle if none of the above match */}

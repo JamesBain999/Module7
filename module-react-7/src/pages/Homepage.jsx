@@ -1,3 +1,5 @@
+import BasicGrid from "../BasicGrid";
+
 export default function Homepage() {
   // Save in pages/Homepage.jsx
   return (

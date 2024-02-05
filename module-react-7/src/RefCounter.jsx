@@ -1,19 +1,25 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export default function RefCounter() {
-  // new counter stored in state
   const [countState, setCountState] = useState(0);
-  let countRef = useRef(0); // one counter stored in a ref
-  let count = 0; // one counter stored in a normal variable
+  const countRef = useRef(0);
+  let count = 0;
+
   function handleClick() {
-    // update countRef object when clicking, via current property
     countRef.current = countRef.current + 1;
-    count = count + 1; // update count variable when clicking
-    // both counts should be the same value
+    count = count + 1;
     alert(
-      `You clicked the useRef: (${countRef.current}) times! \n You clicked the count: (${count}) times!`
+      `You clicked the useRef: (${countRef.current}) times!\nYou clicked the count: (${count}) times!`
     );
   }
+
+  
+
+  useEffect(() => {
+    const codeElement = document.getElementById("code");
+    codeElement.innerText = code;
+  }, [code]);
+
   return (
     <div className="RefCounter componentBox">
       <button onClick={handleClick}>REF COUNTER: Click me!</button> Ref:{" "}
@@ -22,6 +28,7 @@ export default function RefCounter() {
         STATE COUNTER: Click me to update!
       </button>
       State: {countState}
+      <pre id="code">{code}</pre>
     </div>
   );
 }

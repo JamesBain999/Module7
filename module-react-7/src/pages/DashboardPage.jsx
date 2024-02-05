@@ -1,34 +1,39 @@
-import { useNavigate, Outlet } from "react-router-dom";
 import React from "react";
+import { useNavigate, Outlet } from "react-router-dom";
+import { Button, Typography, Select, MenuItem } from "@mui/material";
 import { useChangeMood } from "../ChangeMoodContext";
 import useBitcoinRates from "../useBitcoinRates";
-import { useUserContext } from '../UserContext'
-
+import { useUserContext } from "../UserContext";
 
 export default function DashboardPage() {
-  // built-in hook in React Router DOM, returns a function
   const navigate = useNavigate();
+
   return (
     <div className="DashboardPage componentBox">
-      <h1>Dashboard</h1>
-      <Outlet /> {/* see next slide */}
-      {/* Will render either <DashboardMessages> when the URL is
- "/dash/messages", <DashboardTasks> at "/dash/tasks",
- or null if it is "/dash" */}
-      <button onClick={() => navigate("/dash/tasks")}>Show Tasks</button>
-      <button onClick={() => navigate("/dash/messages")}>Show Messages</button>
-      <button onClick={() => navigate("/dash/bitcoin")}>Show Bitcoin Rates</button>
-      <button onClick={() => navigate("/dash/emoji")}>Show Emoji Changer</button>
-      <button onClick={() => navigate(-1)}>Back</button>
+      <Typography variant="h1">Dashboard</Typography>
+      <Outlet />
+      <Button onClick={() => navigate("/dash/tasks")}>Show Tasks</Button>
+      <Button onClick={() => navigate("/dash/messages")}>Show Messages</Button>
+      <Button onClick={() => navigate("/dash/bitcoin")}>
+        Show Bitcoin Rates
+      </Button>
+      <Button onClick={() => navigate("/dash/emoji")}>
+        Show Emoji Changer
+      </Button>
+      <Button onClick={() => navigate("/dash/PLR")}>Post List Reducer</Button>
+      <Button onClick={() => navigate(-1)}>Back</Button>
     </div>
   );
 }
 
 export function DashboardMessages(props) {
   const { currentUser } = useUserContext();
+
   return (
     <div className="DashboardMessages">
-      <p>Welcome to your dashboard, {currentUser.email}</p>
+      <Typography variant="body1">
+        Welcome to your dashboard, {currentUser.email}
+      </Typography>
     </div>
   );
 }
@@ -39,6 +44,7 @@ export function DashboardTasks(props) {
     { id: 2, name: "Decide on capstone project" },
     { id: 3, name: "Learn databases" },
   ];
+
   return (
     <div className="DashboardTasks">
       <ul className="tasks">
@@ -52,29 +58,29 @@ export function DashboardTasks(props) {
 
 export function BitcoinRates(props) {
   const currencies = ["USD", "AUD", "NZD", "GBP", "EUR", "SGD"];
-  const { currentMood } = useChangeMood(); // Retrieve the currentMood from the context
+  const { currentMood } = useChangeMood();
 
   const [currency, setCurrency] = React.useState(currencies[0]);
   const price = useBitcoinRates(currency);
 
   const options = currencies.map((curr) => (
-    <option value={curr} key={curr}>
+    <MenuItem value={curr} key={curr}>
       {curr}
-    </option>
+    </MenuItem>
   ));
 
   return (
     <div className="BitcoinRates componentBox">
-      <h3>Bitcoin Exchange Rate</h3>
+      <Typography variant="h3">Bitcoin Exchange Rate</Typography>
       <div>
         <strong>Current Mood: </strong>
         {currentMood}
       </div>
       <label>
         Choose currency:
-        <select value={currency} onChange={(e) => setCurrency(e.target.value)}>
+        <Select value={currency} onChange={(e) => setCurrency(e.target.value)}>
           {options}
-        </select>
+        </Select>
       </label>
       <div>
         <strong>Exchange Rate: </strong>
@@ -84,17 +90,16 @@ export function BitcoinRates(props) {
   );
 }
 
-
 export function EmojiChanger(props) {
   const { currentMood, changeMood } = useChangeMood();
 
   return (
     <div className="MoodChanger">
-      Current Mood: {currentMood}
-      <button onClick={() => changeMood("😂")}>Laughing Emoji</button>
-      <button onClick={() => changeMood("😘")}>Kissing Emoji</button>
-      <button onClick={() => changeMood("😎")}>Sunglasses Emoji</button>
-      <button onClick={() => changeMood("😢")}>Sad Emoji</button>
+      <Typography variant="body1">Current Mood: {currentMood}</Typography>
+      <Button onClick={() => changeMood("😂")}>Laughing Emoji</Button>
+      <Button onClick={() => changeMood("😘")}>Kissing Emoji</Button>
+      <Button onClick={() => changeMood("😎")}>Sunglasses Emoji</Button>
+      <Button onClick={() => changeMood("😢")}>Sad Emoji</Button>
     </div>
   );
 }
