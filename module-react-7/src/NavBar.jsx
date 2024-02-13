@@ -24,7 +24,6 @@ export default function NavBar() {
         <Button color="inherit" component={Link} to="/about">
           Login Form
         </Button>
-        {/* Add another page with route and component */}
       </Toolbar>
     </AppBar>
   );
